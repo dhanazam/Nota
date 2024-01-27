@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    style=""
+    app:cardBackgroundColor="?colorSurfaceContainerLow"
+    >
+
+    <TextView
+        android:id="@+id/largeCard_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textSize="16sp"
+        android:textColor="?colorOnSurface"/>
+
+    <TextView
+        android:id="@+id/largeCard_Content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Content"
+        android:textColor="?colorOnSurfaceVariant"
+        android:layout_marginTop="43dp"
+        android:layout_marginBottom="30dp"/>
+
+    <TextView
+        android:id="@+id/largeCard_lastEditedDateAndMonth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:textSize="10sp"
+        android:gravity="bottom"
+        android:text="6 Dec"/>
+
+</com.google.android.material.card.MaterialCardView>
