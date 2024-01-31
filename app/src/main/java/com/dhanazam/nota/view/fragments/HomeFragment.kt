@@ -25,7 +25,9 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+
 
         // Setting up Recycler View
         mainViewModel.getNote().observe(viewLifecycleOwner) { noteList ->

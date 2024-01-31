@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--EditText heading-->
+    <style name="Widget.Nota.EditText.Heading" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@color/transparent</item>
+        <item name="android:fontFamily">@font/manrope_semibold</item>
+        <item name="android:hint">@string/hint_editTextHeading</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textSize">35sp</item>
+        <item name="android:textColor">?colorOnSurface</item>
+        <item name="maxLines">1</item>
+        <item name="android:maxLength">50</item>
+        <item name="android:textColorHint">?colorOnSurfaceVariant</item>
+        <item name="android:textCursorDrawable">@drawable/custom_cursor</item>
+    </style>
+
+</resources>

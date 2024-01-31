@@ -4,54 +4,72 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.dhanazam.nota.ARG_PARAM1
-import com.dhanazam.nota.ARG_PARAM2
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.dhanazam.nota.R
+import com.dhanazam.nota.databinding.FragmentCreateNoteBinding
+import com.dhanazam.nota.model.NotesEntity
+import com.dhanazam.nota.utils.CalendarUtil
+import com.dhanazam.nota.utils.KeyboardUtil
+import com.dhanazam.nota.viewmodel.MainViewModel
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CreateNoteFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class CreateNoteFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    private lateinit var binding: FragmentCreateNoteBinding
+    private val mainViewModel: MainViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_note, container, false)
+
+        binding = FragmentCreateNoteBinding.inflate(layoutInflater, container, false)
+
+        binding.toolbarCreateNote.setOnMenuItemClickListener {
+            when (it.itemId) {
+
+                //Confirm Button
+                R.id.create_note_toolbar_options_confirm -> {
+                    saveNewNote()
+                    true
+                }
+
+                else -> { true}
+            }
+        }
+
+        //Navigation Button(back button)
+        binding.toolbarCreateNote.setNavigationOnClickListener{
+            findNavController().popBackStack()
+        }
+
+        binding.textViewDateAndTime.text = getString(R.string.label_textView_dateAndTime, CalendarUtil.getCurrentDay(), CalendarUtil.getCurrentTime() )
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CreateNoteFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CreateNoteFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
+    private fun saveNewNote() {
+        if(binding.editTextContent.text.toString().isEmpty()) {
+            Toast.makeText(activity, "Note content is empty", Toast.LENGTH_SHORT).show()
+
+        } else {
+            val title = binding.editTextHeading.text.toString()
+            val content = binding.editTextContent.text.toString()
+            val lastEditedDate = CalendarUtil.getCurrentDate()
+            val lastEditedDay = CalendarUtil.getCurrentDay()
+            val lastEditedTime = CalendarUtil.getCurrentTime()
+            val lastEditedMonth = CalendarUtil.getCurrentMonth()
+            val data = NotesEntity(null, title, content, lastEditedDate, lastEditedDay, lastEditedTime, lastEditedMonth)
+            mainViewModel.insertNotes(data)
+            findNavController().popBackStack()
+        }
     }
+
+    override fun onStart() {
+        super.onStart()
+        KeyboardUtil.showSoftKeyboard(binding.editTextHeading)
+    }
+
 }
