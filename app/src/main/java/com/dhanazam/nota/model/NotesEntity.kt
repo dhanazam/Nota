@@ -1,9 +1,12 @@
 package com.dhanazam.nota.model
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "Notes")
 data class NotesEntity(
     @PrimaryKey(autoGenerate = true)
@@ -27,4 +30,4 @@ data class NotesEntity(
 
     @ColumnInfo(name = "notes_lastEdited_month" )
     var lastEditedMonth:String,
-)
+) : Parcelable

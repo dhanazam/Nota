@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_createNoteFragment"
             app:destination="@id/createNoteFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_viewNoteFragment"
+            app:destination="@id/viewNoteFragment" />
     </fragment>
     <fragment
         android:id="@+id/createNoteFragment"
@@ -22,5 +25,15 @@
         <action
             android:id="@+id/action_createNoteFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewNoteFragment"
+        android:name="com.dhanazam.nota.view.fragments.ViewNoteFragment"
+        android:label="fragment_view_note"
+        tools:layout="@layout/fragment_view_note" >
+        <argument
+            android:name="data"
+            app:argType="com.dhanazam.nota.model.NotesEntity"
+            />
     </fragment>
 </navigation>

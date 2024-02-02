@@ -3,13 +3,19 @@ package com.dhanazam.nota.view.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.dhanazam.nota.R
 import com.dhanazam.nota.databinding.LargeCardViewBinding
 import com.dhanazam.nota.model.NotesEntity
+import com.dhanazam.nota.view.fragments.HomeFragmentDirections
 
 class MyNotesAdapter(private val requireContext: Context, private var noteList: List<NotesEntity>) : RecyclerView.Adapter<MyNotesAdapter.MyNotesViewHolder>() {
 
+    fun filtering(newFilteredList: ArrayList<NotesEntity>) {
+        noteList = newFilteredList
+        notifyDataSetChanged()
+    }
     /**
      * Provide a reference to the type of views that you are using
      * custom ViewHolder
@@ -42,6 +48,9 @@ class MyNotesAdapter(private val requireContext: Context, private var noteList: 
         holder.binding.largeCardLastEditedDateAndMonth.text = requireContext.resources.getString(R.string.label_card_dateAndMonth, data.lastEditedDate, data.lastEditedMonth)
 
         //Card click-listener
-//        holder.binding.root.setOnClickListener {  }
+        holder.binding.root.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToViewNoteFragment(data)
+            it.findNavController().navigate(action)
+        }
     }
 }
