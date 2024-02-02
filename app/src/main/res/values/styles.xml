@@ -15,4 +15,17 @@
         <item name="android:textCursorDrawable">@drawable/custom_cursor</item>
     </style>
 
+    <!--EditText note-->
+    <style name="Widget.Nota.EditText.Note" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@color/transparent</item>
+        <item name="android:fontFamily">@font/manrope_medium</item>
+        <item name="android:hint">@string/hint_editTextNote</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">?colorOnSurface</item>
+        <item name="android:gravity">start</item>
+        <item name="android:textColorHint">?colorOnSurfaceVariant</item>
+        <item name="android:textCursorDrawable">@drawable/custom_cursor</item>
+    </style>
+
 </resources>
