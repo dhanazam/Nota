@@ -28,4 +28,11 @@
         <item name="android:textCursorDrawable">@drawable/custom_cursor</item>
     </style>
 
+    <!--Button-->
+    <style name="Widget.Nota.Button" parent="Widget.Material3.Button">
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="android:textColor">?colorOnPrimarySurface</item>
+        <item name="android:backgroundTint">?colorPrimary</item>
+    </style>
+
 </resources>
